@@ -1,0 +1,98 @@
+<!-- New Task Section -->
+<div class="flex justify-center pb-10">
+  <div
+    class="bg-white rounded-2xl p-4 h-16 w-1/2 flex flex-row justify-between"
+  >
+    <input
+      class="outline-none focus:ring-0 w-4/5 rounded-xl text-gray-700"
+      type="text"
+      [(ngModel)]="description"
+      placeholder="start typing..."
+    />
+    <button
+      class="rounded-xl w-1/8 px-4 text-gray-700"
+      (click)="addTask()"
+      [disabled]="!authService.isLoggedIn"
+      [ngClass]="
+        authService.isLoggedIn
+          ? 'bg-blue-300 hover:bg-blue-500'
+          : 'bg-gray-200 text-gray-100 opacity-75 cursor-not-allowed'
+      "
+    >
+      Add Task
+    </button>
+  </div>
+</div>
+
+<!-- Tasks - List -->
+<div *ngIf="tasks?.length" class="flex justify-center pb-10 text-gray-700">
+  <div class="bg-white rounded-2xl pt-2 pb-2 pr-0.5 pl-0.5 w-1/2">
+    <mat-list class="overflow-auto max-h-96">
+      <ng-container *ngFor="let task of tasks">
+        <mat-list-item class="flex flex-row justify-between">
+          <ng-container *ngIf="!task.isEdit; else editView">
+            <div class="w-4/5">
+              <ng-container *ngIf="authService.isLoggedIn">
+                <input
+                  class="py-2 cursor-pointer"
+                  type="checkbox"
+                  [checked]="task.isCompleted"
+                  (change)="updateTask(task, true)"
+                />
+              </ng-container>
+
+              <span class="p-2">
+                <span [ngClass]="task.isCompleted ? 'line-through' : ''">{{
+                  task.description
+                }}</span>
+                <ng-container>
+                  <span *ngIf="!authService.isLoggedIn" class="italic text-xs">
+                    ({{ getCreatedBy(task) }})
+                  </span>
+                </ng-container>
+              </span>
+            </div>
+            <div
+              *ngIf="authService.isLoggedIn"
+              class="w-1/5 flex flex-row justify-end"
+            >
+              <mat-icon
+                class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
+                (click)="task.isEdit = !task.isEdit"
+                >edit</mat-icon
+              >
+              <mat-icon
+                class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
+                (click)="removeTask(task)"
+                >delete</mat-icon
+              >
+            </div>
+          </ng-container>
+
+          <ng-template #editView>
+            <div class="w-4/5">
+              <input
+                class="outline-none focus:ring-0 w-4/5 text-gray-700"
+                type="text"
+                [(ngModel)]="task.description"
+                placeholder="edit task description..."
+              />
+            </div>
+            <div class="w-1/5 flex flex-row justify-end">
+              <mat-icon
+                class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
+                (click)="updateTask(task); task.isEdit = !task.isEdit"
+                >save</mat-icon
+              >
+              <mat-icon
+                class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
+                (click)="task.isEdit = !task.isEdit"
+                >close</mat-icon
+              >
+            </div>
+          </ng-template>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </div>
+</div>

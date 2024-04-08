@@ -1,0 +1,25 @@
+<div class="flex justify-center pt-40 pb-10">
+  <div class="p-2 w-1/2 flex flex-row justify-between">
+    <span class="tracking-widest font-extrabold text-4xl text-yellow-50"
+      >TODO</span
+    >
+    <div class="flex flex-row justify-end">
+      <ng-container *ngIf="authService.isLoggedIn; else guestTemplate">
+        <span class="p-2 text-yellow-50">{{ authService.name }}</span>
+        <mat-icon
+          class="cursor-pointer text-4xl text-yellow-50"
+          (click)="logOut()"
+          >logout
+        </mat-icon>
+      </ng-container>
+      <ng-template #guestTemplate>
+        <span class="p-2 text-yellow-50">Sign In / Sign Up</span>
+        <mat-icon
+          class="cursor-pointer text-4xl text-yellow-50"
+          (click)="navigateToLogin()"
+          >account_circle
+        </mat-icon>
+      </ng-template>
+    </div>
+  </div>
+</div>

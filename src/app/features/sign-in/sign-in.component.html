@@ -1,0 +1,108 @@
+<div class="flex w-screen h-screen justify-center items-center">
+  <div class="w-96 bg-white border rounded-2xl p-3">
+    <ng-container *ngIf="showSignIn; else signUp">
+      <span
+        class="flex justify-center items-center p-3 font-extrabold text-3xl text-blue-500"
+        >Sign In</span
+      >
+      <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="email"
+          placeholder="Username / Email*"
+          formControlName="username"
+        />
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="password"
+          placeholder="Password*"
+          formControlName="password"
+        />
+        <div class="w-full flex flex-row justify-between mt-5">
+          <button
+            class="w-1/2 m-2 bg-gray-400 hover:bg-gray-500 font-medium text-gray-700 p-3 rounded-xl"
+            (click)="goToHome()"
+          >
+            Cancel
+          </button>
+          <button
+            class="w-1/2 m-2 bg-blue-300 hover:bg-blue-500 font-medium text-gray-700 p-3 rounded-xl"
+            type="submit"
+          >
+            Sign In
+          </button>
+        </div>
+      </form>
+      <span class="mt-2 flex justify-center items-center text-sm"
+        >Don't have an account?
+        <div
+          class="text-blue-600 pl-2 cursor-pointer"
+          (click)="showSignIn = false"
+        >
+          Sign up
+        </div>
+      </span>
+    </ng-container>
+    <ng-template #signUp>
+      <span
+        class="flex justify-center items-center p-3 font-extrabold text-3xl text-blue-500"
+        >Sign Up</span
+      >
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="text"
+          placeholder="First name*"
+          formControlName="firstName"
+        />
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="text"
+          placeholder="Last name*"
+          formControlName="lastName"
+        />
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="email"
+          placeholder="Email*"
+          formControlName="email"
+        />
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="password"
+          placeholder="Password*"
+          formControlName="password"
+        />
+        <input
+          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          type="password"
+          placeholder="Confirm Password*"
+          formControlName="confirmPassword"
+        />
+        <div class="w-full flex flex-row justify-between mt-5">
+          <button
+            class="w-1/2 m-2 bg-gray-400 hover:bg-gray-500 font-medium text-gray-700 p-3 rounded-xl"
+            (click)="goToHome()"
+          >
+            Cancel
+          </button>
+          <button
+            class="w-1/2 m-2 bg-blue-300 hover:bg-blue-500 font-medium text-gray-700 p-3 rounded-xl"
+            type="submit"
+          >
+            Register User
+          </button>
+        </div>
+      </form>
+      <span class="mt-2 flex justify-center items-center text-sm"
+        >Have an account already?
+        <div
+          class="text-blue-600 pl-2 cursor-pointer"
+          (click)="showSignIn = true"
+        >
+          Sign in
+        </div>
+      </span>
+    </ng-template>
+  </div>
+</div>

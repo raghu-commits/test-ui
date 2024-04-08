@@ -4,9 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HeaderModule } from './header/header.module';
-import { NewTaskModule } from './tasks/new-task/new-task.module';
-import { TaskListModule } from './tasks/task-list/task-list.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,9 +14,8 @@ import { TaskListModule } from './tasks/task-list/task-list.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HeaderModule,
-    NewTaskModule,
-    TaskListModule,
+    HttpClientModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
