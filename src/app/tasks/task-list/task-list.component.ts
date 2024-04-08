@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss'],
 })
-export class AppComponent {
-  newTask: string = '';
-  isloggedIn: boolean = false;
+export class TaskListComponent implements OnInit {
+  constructor() {}
+
   tasks: any[] = [
     {
       id: 1,
@@ -29,11 +29,8 @@ export class AppComponent {
     },
   ];
 
-  updateTask(task: any) {
-    alert(task.description);
-    alert(task.isCompleted);
-  }
-  removeTask(task: any) {
-    alert(task.description);
-  }
+  updateTask(task: any) {}
+  removeTask(task: any) {}
+
+  ngOnInit(): void {}
 }
