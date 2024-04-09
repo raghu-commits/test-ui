@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListComponent } from './task-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -8,9 +10,9 @@ describe('TaskListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskListComponent ]
-    })
-    .compileComponents();
+      declarations: [TaskListComponent],
+      imports: [HttpClientModule, MatSnackBarModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -13,6 +13,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   tasks: ITask[] = [];
   description: string = '';
   private subscriptions: Subscription[] = [];
+  editDescription: string = '';
 
   constructor(
     public readonly authService: AuthService,
@@ -46,6 +47,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.tasksService.updateTask(task).subscribe(
         (response) => {
+          if (task.isEdit) task.isEdit = !task.isEdit;
           this.getTasks();
           this.notificationService.showSnackBar('Task updated successfully!!');
         },
@@ -59,6 +61,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
     );
   }
 
+  saveDescription(task: any) {
+    task.description = this.editDescription;
+    this.updateTask(task);
+  }
   removeTask(task: any) {
     this.subscriptions.push(
       this.tasksService.deleteTask(task.id).subscribe(

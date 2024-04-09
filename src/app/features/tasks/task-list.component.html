@@ -53,7 +53,9 @@
             >
               <mat-icon
                 class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
-                (click)="task.isEdit = !task.isEdit"
+                (click)="
+                  editDescription = task.description; task.isEdit = !task.isEdit
+                "
                 >edit</mat-icon
               >
               <mat-icon
@@ -69,19 +71,19 @@
               <input
                 class="outline-none focus:ring-0 w-4/5 text-gray-700"
                 type="text"
-                [(ngModel)]="task.description"
+                [(ngModel)]="editDescription"
                 placeholder="edit task description..."
               />
             </div>
             <div class="w-1/5 flex flex-row justify-end">
               <mat-icon
                 class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
-                (click)="updateTask(task); task.isEdit = !task.isEdit"
+                (click)="saveDescription(task)"
                 >save</mat-icon
               >
               <mat-icon
                 class="text-blue-300 hover:text-blue-500 w-1/8 px-6 cursor-pointer"
-                (click)="task.isEdit = !task.isEdit"
+                (click)="editDescription = ''; task.isEdit = !task.isEdit"
                 >close</mat-icon
               >
             </div>
