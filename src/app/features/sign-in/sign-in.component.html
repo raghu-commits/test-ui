@@ -7,14 +7,26 @@
       >
       <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          [ngClass]="
+            signInForm.controls.username.invalid &&
+            signInForm.controls.username.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           type="email"
           id="username"
           placeholder="Username / Email*"
           formControlName="username"
         />
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          [ngClass]="
+            signInForm.controls.password.invalid &&
+            signInForm.controls.password.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           type="password"
           id="password"
           placeholder="Password*"
@@ -25,10 +37,16 @@
             class="w-1/2 m-2 bg-gray-400 hover:bg-gray-500 font-medium text-gray-700 p-3 rounded-xl"
             (click)="goToHome()"
           >
-            Cancel
+            Guest
           </button>
           <button
-            class="w-1/2 m-2 bg-blue-300 hover:bg-blue-500 font-medium text-gray-700 p-3 rounded-xl"
+            class="w-1/2 m-2 font-medium text-gray-700 p-3 rounded-xl"
+            [ngClass]="
+              signInForm.valid
+                ? 'bg-blue-300 hover:bg-blue-500'
+                : 'bg-gray-200 text-gray-100 opacity-75 cursor-not-allowed'
+            "
+            [disabled]="signInForm.invalid"
             type="submit"
           >
             Sign In
@@ -52,36 +70,64 @@
       >
       <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          [ngClass]="
+            signUpForm.controls.firstName.invalid &&
+            signUpForm.controls.firstName.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           type="text"
           id="firstName"
           placeholder="First name*"
           formControlName="firstName"
         />
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          [ngClass]="
+            signUpForm.controls.lastName.invalid &&
+            signUpForm.controls.lastName.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           type="text"
           id="lastName"
           placeholder="Last name*"
           formControlName="lastName"
         />
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
           type="email"
+          [ngClass]="
+            signUpForm.controls.email.invalid && signUpForm.controls.email.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           id="email"
           placeholder="Email*"
           formControlName="email"
         />
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          [ngClass]="
+            signUpForm.controls.password.invalid &&
+            signUpForm.controls.password.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           type="password"
-          id=""
-          password
+          id="password"
           placeholder="Password*"
           formControlName="password"
         />
         <input
-          class="mt-5 border border-gray-400 rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          class="mt-5 border rounded-xl w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          [ngClass]="
+            signUpForm.controls.confirmPassword.invalid &&
+            signUpForm.controls.confirmPassword.dirty
+              ? 'border-red-600'
+              : ' border-gray-400'
+          "
           type="password"
           id="confirmPassword"
           placeholder="Confirm Password*"
@@ -89,13 +135,13 @@
         />
         <div class="w-full flex flex-row justify-between mt-5">
           <button
-            class="w-1/2 m-2 bg-gray-400 hover:bg-gray-500 font-medium text-gray-700 p-3 rounded-xl"
-            (click)="goToHome()"
-          >
-            Cancel
-          </button>
-          <button
-            class="w-1/2 m-2 bg-blue-300 hover:bg-blue-500 font-medium text-gray-700 p-3 rounded-xl"
+            class="w-full m-2 font-medium text-gray-700 p-3 rounded-xl"
+            [ngClass]="
+              signUpForm.valid
+                ? 'bg-blue-300 hover:bg-blue-500'
+                : 'bg-gray-200 text-gray-100 opacity-75 cursor-not-allowed'
+            "
+            [disabled]="signUpForm.invalid"
             type="submit"
           >
             Register User

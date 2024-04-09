@@ -81,19 +81,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.authService.getAllTasks$.subscribe(
-        (isLoggedOut) => {
-          if (isLoggedOut) this.getTasks();
-        },
-        (error) => {
-          this.notificationService.showSnackBar(
-            'An error occured, check console for more details!!'
-          );
-          console.error('Error handler:', error);
-        }
-      )
-    );
     this.getTasks();
   }
 

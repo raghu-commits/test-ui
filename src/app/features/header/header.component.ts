@@ -18,5 +18,6 @@ export class HeaderComponent {
 
   logOut() {
     this.authService.logOut();
+    this.navigateToLogin();
   }
 }

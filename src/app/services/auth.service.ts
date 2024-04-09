@@ -14,7 +14,6 @@ export class AuthService {
   name: string = '';
   userId: string = '';
   isLoggedIn: boolean = false;
-  getAllTasks$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -44,6 +43,5 @@ export class AuthService {
     this.isLoggedIn = false;
     this.name = '';
     this.notificationService.showSnackBar('Logout successful!!');
-    this.getAllTasks$.next(true);
   }
 }

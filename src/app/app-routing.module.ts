@@ -4,7 +4,7 @@ import { SignInComponent } from './features/sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/signin', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'signin', component: SignInComponent },
 ];
